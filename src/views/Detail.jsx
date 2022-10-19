@@ -19,7 +19,12 @@ function Detail() {
   
   // Data fetching side effect
   useEffect(() => {
-    async function fetchData() {      
+    async function fetchData() {   
+
+      // Reset data before data fetching
+      window.scrollTo(0, 0);
+      setLoaded(false);
+
       // fetch country data from API
       const res1 = await fetch(`https://restcountries.com/v3.1/alpha/${country_code}`);
       const countryData = await res1.json();
@@ -34,8 +39,7 @@ function Detail() {
       const res2 = await fetch(`https://restcountries.com/v3.1/alpha/?codes=${country.borders.join(',')}`);
       const neighborsData = await res2.json();
 
-      // Update "loaded" state
-      window.scrollTo(0, 0);
+      // Update "loaded" state      
       setCountry(country);
       setNeighbors(
         neighborsData.map((c) => ({ name: c.name.common, code: c.cca3.toLowerCase() }))
