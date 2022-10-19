@@ -96,10 +96,10 @@ function Detail() {
                 </p>
                 <p>
                   <span className="font-normal">Capital:</span>{" "}
-                  {country.capital}
+                  {country.capital.join(', ')}
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 max-w-[50%]">
                 <p>
                   <span className="font-normal">Top Level Domain:</span>{" "}
                   {country.tld}
