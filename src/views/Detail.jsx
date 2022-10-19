@@ -99,7 +99,7 @@ function Detail() {
                   {country.capital.join(', ')}
                 </p>
               </div>
-              <div className="flex flex-col gap-2 max-w-[50%]">
+              <div className="flex flex-col gap-2 md:max-w-[50%]">
                 <p>
                   <span className="font-normal">Top Level Domain:</span>{" "}
                   {country.tld}
