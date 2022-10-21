@@ -23,7 +23,7 @@ function Home() {
   // Memoized derived state
   const filteredCountries = useMemo(() => {
     return (
-      countries
+      countries            
         // Region filter
         .filter((c) =>
           regionFilter !== null ? c.region === regions[regionFilter] : true
@@ -34,6 +34,9 @@ function Home() {
             ? c.name.common.toLowerCase().includes(searchInput.toLowerCase())
             : true;
         })
+      
+        // Sort in alphabetical order
+        .sort((c1, c2) => c1.name.common.localeCompare(c2.name.common))
     );
   }, [countries, searchInput, regionFilter]);
 

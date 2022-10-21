@@ -81,12 +81,16 @@ function Detail() {
 
             <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-6">
               <div className="flex flex-col gap-2">
-                <p>
-                  <span className="font-normal text-md">Native Name:</span>{" "}
-                  {`${
-                    Object.values(country.name.nativeName)[0].common
-                  } (${Object.keys(country.name.nativeName)[0].toUpperCase()})`}
-                </p>
+                {country.name.hasOwnProperty("nativeName") && (
+                  <p>
+                    <span className="font-normal text-md">Native Name:</span>{" "}
+                    {`${
+                      Object.values(country.name.nativeName)[0].common
+                    } (${Object.keys(
+                      country.name.nativeName
+                    )[0].toUpperCase()})`}
+                  </p>
+                )}
                 <p>
                   <span className="font-normal">Population:</span>{" "}
                   {Number(country.population).toLocaleString()}
@@ -94,30 +98,38 @@ function Detail() {
                 <p>
                   <span className="font-normal">Region:</span> {country.region}
                 </p>
-                <p>
-                  <span className="font-normal">Sub Region:</span>{" "}
-                  {country.subregion}
-                </p>
-                <p>
-                  <span className="font-normal">Capital:</span>{" "}
-                  {country.capital.join(', ')}
-                </p>
+                {country.subregion && (
+                  <p>
+                    <span className="font-normal">Sub Region:</span>{" "}
+                    {country.subregion}
+                  </p>
+                )}
+                {country.capital && (
+                  <p>
+                    <span className="font-normal">Capital:</span>{" "}
+                    {country.capital.join(", ")}
+                  </p>
+                )}
               </div>
               <div className="flex flex-col gap-2 md:max-w-[50%]">
                 <p>
                   <span className="font-normal">Top Level Domain:</span>{" "}
                   {country.tld}
                 </p>
-                <p>
-                  <span className="font-normal">Currencies:</span>{" "}
-                  {Object.values(country.currencies)
-                    .map((c) => c.name)
-                    .join(", ")}
-                </p>
-                <p>
-                  <span className="font-normal">Languages:</span>{" "}
-                  {Object.values(country.languages).join(", ")}
-                </p>
+                {country.currencies && (
+                  <p>
+                    <span className="font-normal">Currencies:</span>{" "}
+                    {Object.values(country.currencies)
+                      .map((c) => c.name)
+                      .join(", ")}
+                  </p>
+                )}
+                {country.languages && (
+                  <p>
+                    <span className="font-normal">Languages:</span>{" "}
+                    {Object.values(country.languages).join(", ")}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -140,37 +152,106 @@ function Detail() {
       {!loaded && (
         <main className="flex flex-col md:flex-row w-full items-center justify-between gap-16 md:gap-24">
           {/* Flag */}
-          <div className={`w-full h-56 md:w-[55%] md:h-80 bg-white dark:bg-dark-blue rounded-xl loading brightness-95 ${darkMode ? 'loading-dark' : 'loading-light'} dark:brightness-110`}></div>
+          <div
+            className={`w-full h-56 md:w-[55%] md:h-80 bg-white dark:bg-dark-blue rounded-xl loading brightness-95 ${
+              darkMode ? "loading-dark" : "loading-light"
+            } dark:brightness-110`}
+          ></div>
 
           {/* Country info */}
           <section className="text-very-dark-blue-text dark:text-white flex flex-col w-full md:w-[50%] gap-8">
-            <h2 className={`text-3xl rounded-md font-bold loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[40%]`}>a</h2>
+            <h2
+              className={`text-3xl rounded-md font-bold loading ${
+                darkMode ? "loading-dark" : "loading-light"
+              } brightness-95 dark:brightness-110 w-[40%]`}
+            >
+              a
+            </h2>
 
             <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-6">
               <div className="flex flex-col gap-2 md:w-[40%]">
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[90%]`}>a</p>
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[40%]`}>a</p>
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[70%]`}>a</p>
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[65%]`}>a</p>
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[90%]`}>a</p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[90%]`}
+                >
+                  a
+                </p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[40%]`}
+                >
+                  a
+                </p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[70%]`}
+                >
+                  a
+                </p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[65%]`}
+                >
+                  a
+                </p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[90%]`}
+                >
+                  a
+                </p>
               </div>
               <div className="flex flex-col gap-2 md:w-[40%]">
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[40%]`}>a</p>
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[90%]`}>a</p>
-                <p className={`rounded-md loading ${darkMode ? 'loading-dark' : 'loading-light'} brightness-95 dark:brightness-110 w-[80%]`}>a</p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[40%]`}
+                >
+                  a
+                </p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[90%]`}
+                >
+                  a
+                </p>
+                <p
+                  className={`rounded-md loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  } brightness-95 dark:brightness-110 w-[80%]`}
+                >
+                  a
+                </p>
               </div>
             </div>
 
-            {/* Border countries */}            
+            {/* Border countries */}
             <div className="flex flex-row flex-wrap items-center gap-4">
-              <div className='w-full'>
-                <p className={`w-60 rounded-md brightness-95 dark:brightness-110 shadow-md font-normal text-xl loading ${darkMode ? 'loading-dark' : 'loading-light'}`}>a</p>
-              </div>              
+              <div className="w-full">
+                <p
+                  className={`w-60 rounded-md brightness-95 dark:brightness-110 shadow-md font-normal text-xl loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  }`}
+                >
+                  a
+                </p>
+              </div>
               {Array.from(Array(6).keys()).map((i) => (
-                <div className={`w-[100px] bg-white dark:bg-dark-blue text-center rounded-md py-1 px-4 shadow-md brightness-95 dark:brightness-110 loading ${darkMode ? 'loading-dark' : 'loading-light'}`}>a</div>
+                <div
+                  className={`w-[100px] bg-white dark:bg-dark-blue text-center rounded-md py-1 px-4 shadow-md brightness-95 dark:brightness-110 loading ${
+                    darkMode ? "loading-dark" : "loading-light"
+                  }`}
+                >
+                  a
+                </div>
               ))}
             </div>
-            
           </section>
         </main>
       )}
